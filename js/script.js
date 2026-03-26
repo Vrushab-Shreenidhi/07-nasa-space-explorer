@@ -18,7 +18,7 @@ setupDateInputs(startInput, endInput);
 
 // Get the gallery and button elements from the page
 const gallery = document.getElementById('gallery');
-const getImagesButton = document.querySelector('button');
+const getImagesButton = document.getElementById('getImagesButton');
 
 // Get modal elements
 const modal = document.getElementById('imageModal');
@@ -30,9 +30,9 @@ let imagesData = [];
 // Cache to store previously fetched images (to avoid rate limiting)
 const imageCache = {};
 
-// NASA API key - using your personal API key for higher rate limits
-// Note: Keep this key private and secure
-const NASA_API_KEY = 'jCB0VVoE93ouYSqbKAc9darTy1hKeWzVFdv1XqcL';
+// NASA API key
+// DEMO_KEY works reliably on public deployments like GitHub Pages.
+const NASA_API_KEY = 'DEMO_KEY';
 const NASA_API_URL = 'https://api.nasa.gov/planetary/apod';
 
 // Show one random fun fact each time the page loads/refreshed
@@ -204,6 +204,7 @@ function openModal(imageIndex) {
   }
   
   // Show the modal by adding the 'active' class
+  modal.hidden = false;
   modal.classList.add('active');
   
   // Prevent scrolling on the body when modal is open
@@ -214,6 +215,7 @@ function openModal(imageIndex) {
 function closeModal() {
   // Hide the modal by removing the 'active' class
   modal.classList.remove('active');
+  modal.hidden = true;
   
   // Allow scrolling on the body again
   document.body.style.overflow = 'auto';
